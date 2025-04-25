@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:portfolio/app_local_controller.dart';
 import 'package:portfolio/home_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:portfolio/styles/app_theme.dart';
@@ -9,11 +10,12 @@ void main() {
   runApp(const ProviderScope(child: MainApp()));
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final locale = ref.watch(appLocalControllerProvider);
     return MaterialApp(
       localizationsDelegates: [
         AppLocalizations.delegate,
@@ -22,11 +24,14 @@ class MainApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [Locale('en'), Locale('km')],
-      // locale: Locale('km'),
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
-      locale: const Locale('en'),
+      locale: locale.when(
+        data: (locale) => Locale(locale),
+        loading: () => const Locale('en'),
+        error: (_, __) => const Locale('en'),
+      ),
       home: const MyHomePage(),
     );
   }

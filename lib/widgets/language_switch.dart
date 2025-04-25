@@ -2,9 +2,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:portfolio/app_local_controller.dart';
 import 'package:portfolio/constant/app_icon.dart';
 import 'package:portfolio/extension.dart';
-import 'package:portfolio/provider.dart';
 import 'package:portfolio/widgets/seo_text.dart';
 
 class LanguageSwitch extends ConsumerWidget {
@@ -12,7 +12,7 @@ class LanguageSwitch extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final AsyncValue<String> locale = ref.watch(appLocaleProvider);
+    final AsyncValue<String> locale = ref.watch(appLocalControllerProvider);
     return PopupMenuButton(
       itemBuilder: (context) {
         return [
@@ -35,9 +35,9 @@ class LanguageSwitch extends ConsumerWidget {
       initialValue: locale.value == 'en' ? 0 : 1,
       onSelected: (value) {
         if (value == 0) {
-          ref.read(appLocaleProvider.notifier).changeLocale('en');
+          ref.read(appLocalControllerProvider.notifier).changeLocale('en');
         } else {
-          ref.read(appLocaleProvider.notifier).changeLocale('km');
+          ref.read(appLocalControllerProvider.notifier).changeLocale('km');
         }
       },
       child: Row(
