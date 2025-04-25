@@ -29,6 +29,19 @@ flutter:
   generate: true 
   uses-material-design: true
 
-assets:
-  assets/icons/
+  assets:
+    - assets/icons/
+
+  fonts:
+    - family: Angkor
+      fonts:
+        - asset: assets/icons/fonts/Angkor-Regular.ttf
+    - family: KantumruyPro
+      fonts:
+        - asset: assets/icons/fonts/KantumruyPro-Italic-VariableFont_wght.ttf
+        - asset: assets/icons/fonts/KantumruyPro-VariableFont_wght.ttf
+    - family: Khmer
+      fonts:
+        - asset: assets/icons/fonts/Khmer-Regular.ttf
+
 

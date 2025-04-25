@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:portfolio/app_local_controller.dart';
+import 'package:portfolio/shared/app_local_controller.dart';
 import 'package:portfolio/home_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:portfolio/shared/app_theme_controller.dart';
 import 'package:portfolio/styles/app_theme.dart';
 
 void main() {
@@ -16,6 +17,9 @@ class MainApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(appLocalControllerProvider);
+    final theme = ref.watch(appThemeControllerProvider);
+
+    // Replace with your fo
     return MaterialApp(
       localizationsDelegates: [
         AppLocalizations.delegate,
@@ -24,8 +28,9 @@ class MainApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [Locale('en'), Locale('km')],
-      darkTheme: AppTheme.dark,
-      themeMode: ThemeMode.dark,
+      darkTheme: AppTheme(fontFamily: _fontfamily(locale.value)).dark,
+      theme: AppTheme(fontFamily: _fontfamily(locale.value)).light,
+      themeMode: theme.value,
       debugShowCheckedModeBanner: false,
       locale: locale.when(
         data: (locale) => Locale(locale),
@@ -34,5 +39,9 @@ class MainApp extends ConsumerWidget {
       ),
       home: const MyHomePage(),
     );
+  }
+
+  String _fontfamily(String? locale) {
+    return (locale ?? 'en') == 'en' ? 'Angkor' : 'khmer';
   }
 }
