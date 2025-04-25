@@ -1,26 +1,30 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:portfolio/constant/app_icon.dart';
 import 'package:portfolio/extension.dart';
+import 'package:portfolio/provider.dart';
 import 'package:portfolio/widgets/seo_text.dart';
 
-class LanguageSwitch extends StatelessWidget {
+class LanguageSwitch extends ConsumerWidget {
   const LanguageSwitch({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final String test = Localizations.localeOf(context).languageCode;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final AsyncValue<String> locale = ref.watch(appLocaleProvider);
     return PopupMenuButton(
       itemBuilder: (context) {
         return [
           PopupMenuItem(
+            value: 0,
             child: PopUpLanguageSwitchItems(
               language: 'English',
               icon: AppIcon.us,
             ),
           ),
           PopupMenuItem(
+            value: 1,
             child: PopUpLanguageSwitchItems(
               language: 'Khmer',
               icon: AppIcon.km,
@@ -28,15 +32,19 @@ class LanguageSwitch extends StatelessWidget {
           ),
         ];
       },
+      initialValue: locale.value == 'en' ? 0 : 1,
+      onSelected: (value) {
+        if (value == 0) {
+          ref.read(appLocaleProvider.notifier).changeLocale('en');
+        } else {
+          ref.read(appLocaleProvider.notifier).changeLocale('km');
+        }
+      },
       child: Row(
         children: [
           Icon(Icons.language, color: context.colorScheme.onBackground),
           const Gap(4),
-          SEOText(
-            Localizations.localeOf(context).languageCode == 'en'
-                ? 'En'
-                : 'ខ្មែរ',
-          ),
+          SEOText(locale.value == 'en' ? 'En' : 'ខ្មែរ'),
         ],
       ),
     );
