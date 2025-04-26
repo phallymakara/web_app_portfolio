@@ -7,6 +7,7 @@ import 'package:portfolio/extension.dart';
 import 'package:portfolio/shared/app_theme_controller.dart';
 import 'package:portfolio/styles/app_sizes.dart';
 import 'package:portfolio/widgets/appBar/app_bar_drawer_icon.dart';
+import 'package:portfolio/widgets/appBar/background_blur.dart';
 import 'package:portfolio/widgets/appBar/drawer_menu.dart';
 import 'package:portfolio/widgets/language_switch.dart';
 
@@ -17,26 +18,33 @@ class MyAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          alignment: Alignment.center,
-          color: context.theme.appBarTheme.backgroundColor,
-          height: context.insets.appBarH,
-          padding: EdgeInsets.symmetric(horizontal: context.insets.Padding),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: Insets.maxWidth),
-            child: Row(
-              children: [
-                AppLogo(),
-                Spacer(),
-                if (context.isDesktop) Appmenus(),
-                Spacer(),
-                LanguageSwitch(),
-                ThemeToggle(),
-                if (!context.isDesktop) AppBarDrawerIcon(),
-              ],
+        Stack(
+          children: [
+            const BackgroundBlur(),
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              alignment: Alignment.center,
+              color:
+                  context.theme.appBarTheme.backgroundColor?.withOpacity(0.6) ??
+                  Colors.transparent,
+              height: context.insets.appBarH,
+              padding: EdgeInsets.symmetric(horizontal: context.insets.Padding),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: Insets.maxWidth),
+                child: Row(
+                  children: [
+                    AppLogo(),
+                    Spacer(),
+                    if (context.isDesktop) Appmenus(),
+                    Spacer(),
+                    LanguageSwitch(),
+                    ThemeToggle(),
+                    if (!context.isDesktop) AppBarDrawerIcon(),
+                  ],
+                ),
+              ),
             ),
-          ),
+          ],
         ),
         if (!context.isDesktop) DrawerMenu(),
       ],
