@@ -15,7 +15,10 @@ class ExperienceBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DesktopExperienceBody();
+    final isMobile = MediaQuery.of(context).size.width < 600;
+    return isMobile
+        ? const MobileExperienceBody()
+        : const DesktopExperienceBody();
   }
 }
 
@@ -175,6 +178,69 @@ class ExperienceDescriptionItem extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class MobileExperienceBody extends StatelessWidget {
+  const MobileExperienceBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Column(
+        children: [
+          for (int i = 0; i < expLen; i++) ...[
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                // Timeline line
+                if (i != expLen - 1)
+                  Positioned(
+                    top: exHeight / 2,
+                    child: Container(
+                      width: 3,
+                      height: expScaleFactor,
+                      color: context.colorScheme.primary.withOpacity(0.5),
+                    ),
+                  ),
+                // Timeline point
+                Positioned(
+                  top: exHeight / 2 - expPointSize / 2,
+                  child: Container(
+                    width: expPointSize,
+                    height: expPointSize,
+                    decoration: BoxDecoration(
+                      color: context.colorScheme.onBackground.withOpacity(0.25),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Center(
+                      child: Container(
+                        width: expPointSize / 2,
+                        height: expPointSize / 2,
+                        decoration: BoxDecoration(
+                          color: context.colorScheme.onBackground.withOpacity(
+                            0.8,
+                          ),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                // Experience card
+                Padding(
+                  padding: EdgeInsets.only(top: expPointSize),
+                  child: ExperienceItem(),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+          ],
+        ],
+      ),
     );
   }
 }

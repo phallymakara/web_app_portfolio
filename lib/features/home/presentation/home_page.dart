@@ -7,6 +7,7 @@ import 'package:portfolio/features/home/presentation/testimony_list.dart';
 import 'package:portfolio/styles/app_sizes.dart';
 import 'package:portfolio/widgets/appBar/background_blur.dart';
 import 'package:portfolio/widgets/appBar/my_app_bar.dart';
+import 'package:portfolio/widgets/appBar/my_footer.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -28,6 +29,7 @@ class MyHomePage extends StatelessWidget {
                   SliverToBoxAdapter(child: HomeCourseList()),
                   SliverToBoxAdapter(child: ExperienceBody()),
                   TestimonyList(),
+                  SliverToBoxAdapter(child: MyFooter()),
                 ],
               ),
             ),
