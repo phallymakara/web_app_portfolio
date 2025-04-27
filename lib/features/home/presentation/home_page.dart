@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:portfolio/features/home/presentation/experience_body.dart';
 import 'package:portfolio/features/home/presentation/hero_widget.dart';
 import 'package:portfolio/features/home/presentation/home_course_list.dart';
+import 'package:portfolio/features/home/presentation/testimony_list.dart';
 import 'package:portfolio/styles/app_sizes.dart';
 import 'package:portfolio/widgets/appBar/background_blur.dart';
 import 'package:portfolio/widgets/appBar/my_app_bar.dart';
@@ -21,15 +22,13 @@ class MyHomePage extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: Container(
               constraints: BoxConstraints(maxWidth: Insets.maxWidth),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    HeroWidget(),
-                    Gap(40),
-                    HomeCourseList(),
-                    ExperienceBody(),
-                  ],
-                ),
+              child: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(child: HeroWidget()),
+                  SliverToBoxAdapter(child: HomeCourseList()),
+                  SliverToBoxAdapter(child: ExperienceBody()),
+                  TestimonyList(),
+                ],
               ),
             ),
           ),
