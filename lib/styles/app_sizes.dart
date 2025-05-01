@@ -10,6 +10,7 @@ abstract class AppInsets {
   double get Padding;
   double get appBarH;
   double get cardpadding;
+  double get gap;
 }
 
 class LargeInsets extends AppInsets {
@@ -24,6 +25,10 @@ class LargeInsets extends AppInsets {
   @override
   // TODO: implement cardpadding
   double get cardpadding => Insets.xs;
+
+  @override
+  // TODO: implement gap
+  double get gap => 120;
 }
 
 class SmallInsets extends AppInsets {
@@ -38,4 +43,8 @@ class SmallInsets extends AppInsets {
   @override
   // TODO: implement cardpadding
   double get cardpadding => Insets.lg;
+
+  @override
+  // TODO: implement gap
+  double get gap => 72;
 }

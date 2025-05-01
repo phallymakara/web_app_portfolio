@@ -17,13 +17,13 @@ class HeroText extends StatelessWidget {
               : CrossAxisAlignment.center,
       children: [
         SEOText(
-          context.texts.mahdimirzadeh,
+          context.texts.phallymakara,
           textAlign:
               context.isDesktopOrTablet ? TextAlign.left : TextAlign.center,
           style: context.textStyle.titleLgBold.copyWith(
             color: context.colorScheme.onBackground,
           ),
-          textRendererStyle: TextRendererStyle.header1,
+          textRendererStyle: TextRendererStyle.header3,
         ),
         Gap(Insets.xs),
         SEOText(

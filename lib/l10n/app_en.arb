@@ -3,8 +3,13 @@
   "courses": "Skill",
   "blog": "Blog",
   "aboutMe": "About me",
-  "mahdimirzadeh": "PHALLY MAKARA",
+  "phallymakara": "PHALLY MAKARA",
   "mobileAppDeveloper": "Mobile App Developer",
   "mobileAppDeveloperDesc": "I create beautiful and functional mobile applications with Flutter and Dart.",
-  "cooperationRequest": "Contact Me"
+  "cooperationRequest": "Contact Me",
+  "poweredByFlutter": "PoweredBy Flutter",
+  "footer": "thank for watching",
+  "courseDescription": "CourseDescription",
+  "experiences": "Experiences",
+  "experiencesDescription": "My professional journey and achievements"
 }

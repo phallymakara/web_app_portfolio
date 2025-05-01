@@ -10,6 +10,7 @@ import 'package:portfolio/widgets/appBar/app_bar_drawer_icon.dart';
 import 'package:portfolio/widgets/appBar/background_blur.dart';
 import 'package:portfolio/widgets/appBar/drawer_menu.dart';
 import 'package:portfolio/widgets/language_switch.dart';
+import 'package:portfolio/widgets/powered_by_flutter.dart';
 
 class MyAppBar extends StatelessWidget {
   const MyAppBar({super.key});
@@ -24,9 +25,10 @@ class MyAppBar extends StatelessWidget {
             AnimatedContainer(
               duration: const Duration(milliseconds: 200),
               alignment: Alignment.center,
-              color:
-                  context.theme.appBarTheme.backgroundColor?.withOpacity(0.6) ??
-                  Colors.transparent,
+
+              // color: (context.theme.appBarTheme.backgroundColor ?? Colors.white)
+              //     .withOpacity(0.6),
+              color: Colors.transparent,
               height: context.insets.appBarH,
               padding: EdgeInsets.symmetric(horizontal: context.insets.Padding),
               child: ConstrainedBox(

@@ -5,6 +5,7 @@ import 'package:portfolio/features/home/presentation/hero_buttons.dart';
 import 'package:portfolio/features/home/presentation/hero_image.dart';
 import 'package:portfolio/features/home/presentation/hero_text.dart';
 import 'package:portfolio/styles/app_sizes.dart';
+import 'package:portfolio/widgets/powered_by_flutter.dart';
 
 class HeroWidget extends StatelessWidget {
   const HeroWidget({super.key});
@@ -13,7 +14,7 @@ class HeroWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('Flutter'),
+        PoweredByFlutter(),
         context.isDesktop || context.isTablet ? _largeHero() : _smallHero(),
       ],
     );

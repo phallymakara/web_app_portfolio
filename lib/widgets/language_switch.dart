@@ -44,7 +44,7 @@ class LanguageSwitch extends ConsumerWidget {
         children: [
           Icon(Icons.language, color: context.colorScheme.onBackground),
           const Gap(4),
-          SEOText(locale.value == 'en' ? 'En' : 'ខ្មែរ'),
+          SEOText(locale.value == 'en' ? 'English' : 'ខ្មែរ'),
         ],
       ),
     );

@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/extension.dart';
 import 'package:portfolio/styles/styled_card.dart';
+import 'package:portfolio/widgets/home_title_subtitle.dart';
 
 const expLen = 6;
 const expPointSize = 16.0;
@@ -15,10 +16,19 @@ class ExperienceBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = MediaQuery.of(context).size.width < 600;
-    return isMobile
-        ? const MobileExperienceBody()
-        : const DesktopExperienceBody();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        HomeTitleSubtitle(
+          title: context.texts.experiences,
+          subtitle: context.texts.experiencesDescription,
+        ),
+        const Gap(32),
+        context.isDesktop
+            ? const DesktopExperienceBody()
+            : const PhoneExpericeBody(),
+      ],
+    );
   }
 }
 
@@ -117,6 +127,45 @@ class DesktopExperienceBody extends StatelessWidget {
   }
 }
 
+class PhoneExpericeBody extends StatelessWidget {
+  const PhoneExpericeBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: [
+          ExperienceItem(),
+          SizedBox(
+            height: 60,
+            child: DottedLine(
+              dashColor: Colors.white,
+              direction: Axis.vertical,
+            ),
+          ),
+          ExperienceItem(),
+          SizedBox(
+            height: 60,
+            child: DottedLine(
+              dashColor: Colors.white,
+              direction: Axis.vertical,
+            ),
+          ),
+          ExperienceItem(),
+          SizedBox(
+            height: 60,
+            child: DottedLine(
+              dashColor: Colors.white,
+              direction: Axis.vertical,
+            ),
+          ),
+          ExperienceItem(),
+        ],
+      ),
+    );
+  }
+}
+
 const exWidth = 300.0;
 const exHeight = 220.0;
 
@@ -128,6 +177,7 @@ class ExperienceItem extends StatelessWidget {
     return StyledCard(
       width: exWidth,
       height: exHeight,
+      borderEffect: true,
       child: Column(
         children: [
           Text(
