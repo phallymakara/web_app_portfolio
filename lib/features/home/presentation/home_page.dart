@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:portfolio/constant/app_icon.dart';
 import 'package:portfolio/extension.dart';
 import 'package:portfolio/features/home/presentation/experience_body.dart';
 import 'package:portfolio/features/home/presentation/hero_widget.dart';
@@ -9,6 +11,7 @@ import 'package:portfolio/styles/app_sizes.dart';
 import 'package:portfolio/widgets/appBar/background_blur.dart';
 import 'package:portfolio/widgets/appBar/my_app_bar.dart';
 import 'package:portfolio/widgets/appBar/my_footer.dart';
+import 'package:portfolio/widgets/home_title_subtitle.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -40,7 +43,24 @@ class MyHomePage extends StatelessWidget {
                   SliverGap(context.insets.gap),
                   SliverToBoxAdapter(child: ExperienceBody()),
                   SliverGap(context.insets.gap),
-                  TestimonyList(),
+                  SliverGap(context.insets.gap),
+                  SliverPadding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: context.insets.gap,
+                    ),
+                    sliver: SliverToBoxAdapter(
+                      child: HomeTitleSubtitle(
+                        title: context.texts.testimonials,
+                        subtitle: context.texts.testimonialsDescription,
+                      ),
+                    ),
+                  ),
+                  SliverPadding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: context.insets.gap,
+                    ),
+                    sliver: TestimonyList(),
+                  ),
                   SliverToBoxAdapter(child: MyFooter()),
                 ],
               ),

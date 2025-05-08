@@ -11,10 +11,10 @@ class PoweredByFlutter extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset('assets/images/flutter.png', width: 24, height: 24),
+        Image.asset('assets/imags/flutter.png', width: 24, height: 24),
         const Gap(8),
         Text(
-          'PowerBy flutter',
+          '',
           style: context.textStyle.bodyMdMedium.copyWith(
             color: context.colorScheme.onBackground,
           ),

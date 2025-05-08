@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:portfolio/app_text_styles.dart';
 import 'package:portfolio/constant/app_menu_list.dart';
-// import 'package:portfolio/app_text_styles.dart';
 import 'package:portfolio/extension.dart';
 import 'package:portfolio/shared/app_theme_controller.dart';
 import 'package:portfolio/styles/app_sizes.dart';
@@ -10,7 +10,6 @@ import 'package:portfolio/widgets/appBar/app_bar_drawer_icon.dart';
 import 'package:portfolio/widgets/appBar/background_blur.dart';
 import 'package:portfolio/widgets/appBar/drawer_menu.dart';
 import 'package:portfolio/widgets/language_switch.dart';
-import 'package:portfolio/widgets/powered_by_flutter.dart';
 
 class MyAppBar extends StatelessWidget {
   const MyAppBar({super.key});
@@ -74,8 +73,10 @@ class Appmenus extends StatelessWidget {
               .map(
                 (AppMenu e) => LargeAppBarMenuItem(
                   texts: e.title,
-                  isSelected: true,
-                  onTap: () {},
+                  isSelected: GoRouterState.of(context).fullPath == e.path,
+                  onTap: () {
+                    context.go(e.path);
+                  },
                 ),
               )
               .toList(),
@@ -94,8 +95,10 @@ class SmallAppMenu extends StatelessWidget {
               .map(
                 (AppMenu e) => LargeAppBarMenuItem(
                   texts: e.title,
-                  isSelected: true,
-                  onTap: () {},
+                  isSelected: GoRouterState.of(context).fullPath == e.path,
+                  onTap: () {
+                    context.go(e.path);
+                  },
                 ),
               )
               .toList(),
@@ -123,7 +126,15 @@ class LargeAppBarMenuItem extends StatelessWidget {
           horizontal: Insets.med,
           vertical: Insets.xs,
         ),
-        child: Text(texts, style: SmallTextStyles().bodyLgBold),
+        child: Text(
+          texts,
+          style: SmallTextStyles().bodyLgMedium.copyWith(
+            color:
+                isSelected
+                    ? context.colorScheme.onBackground
+                    : context.colorScheme.onSurfaceVariant,
+          ),
+        ),
       ),
     );
   }

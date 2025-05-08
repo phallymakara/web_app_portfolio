@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:portfolio/routes/app_routes.dart';
 import 'package:portfolio/shared/app_local_controller.dart';
 import 'package:portfolio/features/home/presentation/home_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -20,8 +21,8 @@ class MainApp extends ConsumerWidget {
     final theme = ref.watch(appThemeControllerProvider);
 
     // Replace with your fo
-    return MaterialApp(
-      localizationsDelegates: [
+    return MaterialApp.router(
+      localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -37,7 +38,7 @@ class MainApp extends ConsumerWidget {
         loading: () => const Locale('en'),
         error: (_, __) => const Locale('en'),
       ),
-      home: const MyHomePage(),
+      routerConfig: AppRoutes.router,
     );
   }
 

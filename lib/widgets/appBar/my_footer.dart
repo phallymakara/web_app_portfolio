@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:portfolio/constant/app_icon.dart';
 import 'package:portfolio/extension.dart';
 import 'package:portfolio/widgets/appBar/my_app_bar.dart';
 import 'package:portfolio/widgets/seo_text.dart';
@@ -36,7 +38,7 @@ class _PhoneFotter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [AppLogo(), SmallAppMenu()]);
+    return Column(children: [AppLogo(), SmallAppMenu(), footerLined()]);
   }
 }
 
@@ -45,6 +47,49 @@ class _DesktopFotter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [AppLogo(), Spacer(), Appmenus(), Spacer()]);
+    return Row(
+      children: [AppLogo(), Spacer(), Appmenus(), Spacer(), footerLined()],
+    );
+  }
+}
+
+class footerLined extends StatelessWidget {
+  const footerLined({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _footerLinkedItem(onPressed: () {}, icon: AppIcon.youtube),
+        _footerLinkedItem(onPressed: () {}, icon: AppIcon.github),
+        _footerLinkedItem(onPressed: () {}, icon: AppIcon.likned),
+        _footerLinkedItem(onPressed: () {}, icon: AppIcon.instagram),
+      ],
+    );
+  }
+}
+
+class _footerLinkedItem extends StatelessWidget {
+  const _footerLinkedItem({
+    super.key,
+    required this.onPressed,
+    required this.icon,
+  });
+  final VoidCallback onPressed;
+  final String icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: onPressed,
+      icon: SvgPicture.asset(
+        icon,
+        colorFilter: ColorFilter.mode(
+          context.colorScheme.onBackground,
+          BlendMode.srcIn,
+        ),
+      ),
+    );
   }
 }
